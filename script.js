@@ -23,7 +23,6 @@ $(function () {
 
     localStorage.setItem(targetParentObj.parentID, targetParentJSON);
   });
-
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -44,9 +43,13 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-
-  
-
+  for(var i = 9; i < 18; i++) {
+    if(localStorage.getItem('hour-' + i) !== null) {
+      var parentObj = JSON.parse(localStorage.getItem('hour-' + i));
+      $("#"+ parentObj.parentID).find('.description').append(parentObj.textContent);
+      console.log("#"+ parentObj.parentID);
+    }
+  }
   // TODO: Add code to display the current date in the header of the page.
   //
   $('#currentDay').text(dayjs().format('dddd, MMMM D'));
